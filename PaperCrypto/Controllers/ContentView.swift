@@ -9,27 +9,16 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    var cryptos:[String] = ["Bitcoin","Etherium","Solana","Shiba-Inu"]
     var body: some View {
-        VStack(alignment: .center){
-            List{
-                HomeScreenCardView(userName: "Tushar")
-                    .listRowSeparator(.hidden, edges: .all)
-                    .padding(.top, -20)
-                    .padding(.bottom,-10)
-                
-                Section(
-                    header: Text("Trending Coins")
-                        .font(.getFont(font: .interBold, size: 20))
-                        .padding(.leading,-20)
-                ) {
-                    ForEach(cryptos, id: \.self) { element in
-                        Text(element)
-                    }
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-                .headerProminence(.increased)
-            }
-            
+            Text("Hello")
+                .tabItem {
+                    Label("Market", systemImage: "chart.line.uptrend.xyaxis")
+                }
         }
     }
 }

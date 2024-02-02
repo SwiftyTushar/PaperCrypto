@@ -28,6 +28,8 @@
 		8513A2CD2B6B68E800D47C66 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8513A2C42B6B68E800D47C66 /* Inter-ExtraLight.ttf */; };
 		8513A2CE2B6B68E800D47C66 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8513A2C52B6B68E800D47C66 /* Inter-Medium.ttf */; };
 		8513A2D12B6B697A00D47C66 /* Font+getFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8513A2D02B6B697A00D47C66 /* Font+getFont.swift */; };
+		8513A2D42B6B736300D47C66 /* CoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8513A2D32B6B736300D47C66 /* CoinView.swift */; };
+		8516C4152B6CA42800ABABC6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8516C4142B6CA42800ABABC6 /* HomeView.swift */; };
 		857BC3312B6B4354009E12A3 /* PaperCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC3302B6B4354009E12A3 /* PaperCryptoApp.swift */; };
 		857BC3332B6B4354009E12A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC3322B6B4354009E12A3 /* ContentView.swift */; };
 		857BC3352B6B4355009E12A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857BC3342B6B4355009E12A3 /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		8513A2C42B6B68E800D47C66 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
 		8513A2C52B6B68E800D47C66 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		8513A2D02B6B697A00D47C66 /* Font+getFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+getFont.swift"; sourceTree = "<group>"; };
+		8513A2D32B6B736300D47C66 /* CoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		8516C4142B6CA42800ABABC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		857BC32D2B6B4354009E12A3 /* PaperCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857BC3302B6B4354009E12A3 /* PaperCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperCryptoApp.swift; sourceTree = "<group>"; };
 		857BC3322B6B4354009E12A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				8513A29E2B6B548300D47C66 /* HomeScreenCardView.swift */,
+				8513A2D32B6B736300D47C66 /* CoinView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				857BC3322B6B4354009E12A3 /* ContentView.swift */,
+				8516C4142B6CA42800ABABC6 /* HomeView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -285,8 +291,10 @@
 			files = (
 				857BC33A2B6B4355009E12A3 /* Persistence.swift in Sources */,
 				857BC33D2B6B4355009E12A3 /* PaperCrypto.xcdatamodeld in Sources */,
+				8513A2D42B6B736300D47C66 /* CoinView.swift in Sources */,
 				8513A29F2B6B548300D47C66 /* HomeScreenCardView.swift in Sources */,
 				857BC3332B6B4354009E12A3 /* ContentView.swift in Sources */,
+				8516C4152B6CA42800ABABC6 /* HomeView.swift in Sources */,
 				8513A2D12B6B697A00D47C66 /* Font+getFont.swift in Sources */,
 				857BC3312B6B4354009E12A3 /* PaperCryptoApp.swift in Sources */,
 			);

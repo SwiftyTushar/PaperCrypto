@@ -40,7 +40,7 @@ struct HomeScreenCardView: View {
                         Button("Invest Today") {
                             print("Button tapped!")
                         }
-                        .font(.getFont(font: .interMedium, size: 12))
+                        .font(.getFont(font: .interBold, size: 12))
                         .frame(width: 100,height: 30)
                         .foregroundColor(.blue)
                         .background(.white)
