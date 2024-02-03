@@ -10,15 +10,17 @@ import CoreData
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            Text("Hello")
-                .tabItem {
-                    Label("Market", systemImage: "chart.line.uptrend.xyaxis")
-                }
+        NavigationView {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                Text("Hello")
+                    .tabItem {
+                        Label("Market", systemImage: "chart.line.uptrend.xyaxis")
+                    }
+            }
         }
     }
 }

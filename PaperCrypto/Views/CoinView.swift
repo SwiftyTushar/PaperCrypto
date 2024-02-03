@@ -28,8 +28,8 @@ struct CoinView: View {
                                 .foregroundColor(.black)
                             Spacer()
                             Text("$20177")
-                                .font(.getFont(font: .interMedium, size: 14))
-                                .foregroundColor(.red)
+                                .font(.getFont(font: .interMedium, size: 15))
+                                .foregroundColor(.black)
                         }
                         HStack{
                             Text("BTC")
@@ -37,7 +37,7 @@ struct CoinView: View {
                                 .foregroundColor(.gray)
                             Spacer()
                             Text("-12.00%")
-                                .font(.getFont(font: .interMedium, size: 14))
+                                .font(.getFont(font: .interMedium, size: 10))
                                 .foregroundColor(.red)
                         }
                     }
