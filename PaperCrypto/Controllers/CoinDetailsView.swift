@@ -30,7 +30,9 @@ let data: [ValuePerCategory] = [
 ]
 
 struct CoinDetailsView: View {
-  
+    private var chartTimeStamps:[String] = ["1 H","24 H","1 W","1 M","6 M","1 Y","All"]
+    @State var selectedTimeStamp = "1 H"
+    
     var body: some View {
         VStack(alignment:.leading,spacing: 8){
             CryptoHeaderView()
@@ -56,20 +58,40 @@ struct CoinDetailsView: View {
             })
             .chartYAxis(.hidden)
             .frame(height: 350)
+            VStack{
+                
+            }
             ScrollView(.horizontal) {
-                LazyHStack{
-                    ForEach(0..<1000) { datum in
-                        Text(datum < 30 ? "\(datum) Day" : "\(datum) Month")
-                            .padding(.all,10)
-                            .background(.gray.opacity(0.1))
-                            .cornerRadius(8)
-                            .font(.getFont(font: .interRegular, size: 12))
+                LazyHStack(spacing:8){
+                    ForEach(chartTimeStamps,id: \.self) { timeStamp in
+                        Capsule()
+                            .stroke(Color.blue,lineWidth:selectedTimeStamp == timeStamp ? 2 : 0)
+                            .frame(width: 50,height: 27)
+                            .background(.gray.opacity(0.09))
+                            .cornerRadius(20)
+                            .overlay {
+                                Text(timeStamp)
+                                    .foregroundColor(selectedTimeStamp == timeStamp ? .blue : .gray)
+                                    .font(.getFont(font: .interRegular, size: 12))
+                            }
+                            .onTapGesture {
+                                selectedTimeStamp = timeStamp
+                            }
+//                        Button(timeStamp) {
+//
+//                        }
+//                        .font(.getFont(font: .interMedium, size: 14))
+//                        .foregroundColor(.black.opacity(0.6))
+//                        .frame(width: 48,height: 30)
+//                        .background(.gray.opacity(0.09))
+//                        .cornerRadius(20)
+                        
                     }
                 }
             }
             .scrollIndicators(.hidden)
             .frame(height: 50)
-            .padding()
+            .padding([.leading,.trailing],10)
             Spacer()
             BuySellView()
         }

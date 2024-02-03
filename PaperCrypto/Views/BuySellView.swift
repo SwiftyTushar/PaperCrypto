@@ -9,10 +9,10 @@ import SwiftUI
 
 struct BuySellView: View {
     var body: some View {
-        Rectangle()
+        RoundedRectangle(cornerRadius: 25)
             .frame(height: 80)
             .foregroundColor(.white)
-            .shadow(color: .gray.opacity(0.1),radius: 0.5,y: -3)
+            .shadow(color: .gray.opacity(0.15),radius: 1.5,y: -3)
             .overlay {
                 HStack(spacing: 20){
                     Button(action:{}) {
