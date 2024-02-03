@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     var cryptos:[String] = ["Bitcoin","Etherium","Solana","Shiba-Inu"]
+    @State private var selectedCrypto: String?
     var body: some View {
         VStack(alignment: .center){
             List{
@@ -20,9 +21,12 @@ struct HomeView: View {
                     header: Text("Trending Coins")
                         .font(.getFont(font: .interBold, size: 20))
                 ) {
-                    ForEach(cryptos, id: \.self) { element in
+                    ForEach(cryptos, id: \.self) { crypto in
                         CoinView()
-                            .listRowSeparator(.hidden, edges: .all)
+                            .onTapGesture {
+                                selectedCrypto = crypto
+                            }
+                        .listRowSeparator(.hidden, edges: .all)
                     }
                     .listRowBackground(Color.clear)
                 }
@@ -30,6 +34,16 @@ struct HomeView: View {
             }
             .listStyle(.plain)
         }
+        .navigationTitle("Home")
+        .background(
+            NavigationLink(
+                destination: CoinDetailsView(),
+                tag: selectedCrypto ?? "",
+                selection: $selectedCrypto
+            ) {
+                EmptyView()
+            }
+        )
     }
 }
 
