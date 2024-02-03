@@ -16,9 +16,9 @@ struct ContentView: View {
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
-                Text("Hello")
+                TradesView()
                     .tabItem {
-                        Label("Market", systemImage: "chart.line.uptrend.xyaxis")
+                        Label("Trades", systemImage: "book")
                     }
             }
         }

@@ -1,20 +1,20 @@
 //
-//  MarketView.swift
+//  PositionCellView.swift
 //  PaperCrypto
 //
-//  Created by Tushar Patil on 02/02/24.
+//  Created by Tushar Patil on 04/02/24.
 //
 
 import SwiftUI
 
-struct MarketView: View {
+struct PositionCellView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct MarketView_Previews: PreviewProvider {
+struct PositionCellView_Previews: PreviewProvider {
     static var previews: some View {
-        MarketView()
+        PositionCellView()
     }
 }

@@ -20,9 +20,11 @@ struct HomeView: View {
                 Section(
                     header: Text("Trending Coins")
                         .font(.getFont(font: .interBold, size: 20))
+                        .padding(.vertical,-5)
                 ) {
                     ForEach(cryptos, id: \.self) { crypto in
                         CoinView()
+                            .padding(.vertical,-5)
                             .onTapGesture {
                                 selectedCrypto = crypto
                             }
