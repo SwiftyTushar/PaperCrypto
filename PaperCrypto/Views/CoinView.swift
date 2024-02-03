@@ -9,9 +9,8 @@ import SwiftUI
 
 struct CoinView: View {
     var body: some View {
-        Rectangle()
+        RoundedRectangle(cornerRadius:10)
             .frame(width: 350,height: 70)
-            .cornerRadius(10)
             .foregroundColor(.white)
             .shadow(color: .gray.opacity(0.5), radius: 2,x:0,y:1)
             .overlay {
