@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct TradeHistoryView: View {
+    @State var cryptos = MockData.sharedInstance.coinData
     var body: some View {
         List{
-            ForEach(0..<10){ _ in
-                CoinView()
-                    .background(.white)
-                    .listRowSeparator(.hidden)
+            ForEach(cryptos, id: \.self) { coin in
+                CoinView(coinData: coin)
                     .padding(.vertical,-5)
+                    .onTapGesture {
+                        //selectedCrypto = coin
+                    }
+                .listRowSeparator(.hidden, edges: .all)
             }
             .listRowBackground(Color.clear)
         }
