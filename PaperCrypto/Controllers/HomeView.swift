@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct HomeView: View {
-    var cryptos:[String] = ["Bitcoin","Etherium","Solana","Shiba-Inu"]
-    @State private var selectedCrypto: String?
+    @State var cryptos = MockData.sharedInstance.coinData
+    @State private var selectedCrypto: CoinViewData?
     var body: some View {
-        VStack(alignment: .center){
+        VStack(alignment: .leading){
             List{
                 Section {
                     HomeScreenCardView(userName: "Tushar")
-                        .listRowSeparator(.hidden, edges: .all)
                 }
+                .listRowSeparator(.hidden, edges: .all)
+                
+                
                 Section(
                     header: Text("Trending Coins")
                         .font(.getFont(font: .interBold, size: 20))
                         .padding(.vertical,-5)
                 ) {
-                    ForEach(cryptos, id: \.self) { crypto in
-                        CoinView()
+                    ForEach(cryptos, id: \.self) { coin in
+                        CoinView(coinData: coin)
                             .padding(.vertical,-5)
                             .onTapGesture {
-                                selectedCrypto = crypto
+                                selectedCrypto = coin
                             }
                         .listRowSeparator(.hidden, edges: .all)
                     }
@@ -40,7 +42,7 @@ struct HomeView: View {
         .background(
             NavigationLink(
                 destination: CoinDetailsView(),
-                tag: selectedCrypto ?? "",
+                tag: selectedCrypto ?? MockData.sharedInstance.coinData[0],
                 selection: $selectedCrypto
             ) {
                 EmptyView()

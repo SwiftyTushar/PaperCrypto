@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CurrentPositionView: View {
+    @State var coinData:[CoinViewData] = MockData.sharedInstance.coinData
     var body: some View {
         ScrollView{
             VStack{
@@ -17,12 +18,17 @@ struct CurrentPositionView: View {
                 Text("Total P&L")
                     .font(.getFont(font: .interMedium, size: 16))
                     .foregroundColor(.gray)
+                ForEach(coinData, id: \.self){ coinData in
+                    CoinView(coinData:coinData)
+                        .padding(.horizontal,20)
+                }
             }
             .padding(.top,16)
         }
         .refreshable {
             print("Refreshed")
         }
+        .scrollIndicators(.hidden)
     }
 }
 

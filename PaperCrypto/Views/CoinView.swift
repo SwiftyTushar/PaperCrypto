@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct CoinView: View {
+    @State var coinData:CoinViewData
     var body: some View {
         RoundedRectangle(cornerRadius:10)
-            .frame(width: 350,height: 70)
+            .frame(width: .infinity,height: 70)
             .foregroundColor(.white)
-            .shadow(color: .gray.opacity(0.5), radius: 2,x:0,y:1)
+            .shadow(color: .gray.opacity(0.5), radius: 1,x:0,y:0)
             .overlay {
                 HStack(spacing: 16){
                     Spacer()
@@ -22,20 +23,20 @@ struct CoinView: View {
                         .frame(width: 40,height: 40)
                     VStack(alignment: .leading){
                         HStack{
-                            Text("Bitcoin")
+                            Text(coinData.title)
                                 .font(.getFont(font: .interMedium, size: 18))
                                 .foregroundColor(.black)
                             Spacer()
-                            Text("$20177")
+                            Text(coinData.price)
                                 .font(.getFont(font: .interMedium, size: 15))
                                 .foregroundColor(.black)
                         }
                         HStack{
-                            Text("BTC")
+                            Text(coinData.subTitle)
                                 .font(.getFont(font: .interMedium, size: 14))
                                 .foregroundColor(.gray)
                             Spacer()
-                            Text("-12.00%")
+                            Text(coinData.pNLPercentage)
                                 .font(.getFont(font: .interMedium, size: 10))
                                 .foregroundColor(.red)
                         }
@@ -48,6 +49,7 @@ struct CoinView: View {
 
 struct CoinView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinView()
+        CoinView(coinData: MockData.sharedInstance.coinData[0])
+            .padding()
     }
 }
