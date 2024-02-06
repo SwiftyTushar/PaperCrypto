@@ -1,19 +1,19 @@
 //
-//  LoginView.swift
+//  SignupView.swift
 //  PaperCrypto
 //
-//  Created by Tushar Patil on 04/02/24.
+//  Created by Tushar Patil on 05/02/24.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct SignupView: View {
     @State var emailText:String = ""
     @State var passwordText:String = ""
+    @State var usernameText:String = ""
+    @State var nameText:String = ""
     @State var emailIsWrong = false
-    @State var progressValue:Float = 0.5
     @Environment(\.dismiss) private var dismiss
-    @State var navigateToHome = false
     var body: some View {
         VStack(alignment:.leading,spacing:20){
             HStack{
@@ -30,15 +30,17 @@ struct LoginView: View {
             }
             .padding(.top,-10)
             Spacer()
-            Text("Login")
+            Text("Signup")
                 .foregroundColor(.black)
                 .font(.getFont(font: .interMedium, size: 30))
             
             PCTextField(placeHolder: "Email", text: $emailText, keyboardType: .emailAddress,leadingImage: Image(systemName: "envelope"))
+            PCTextField(placeHolder: "Name", text: $nameText, keyboardType: .emailAddress,leadingImage: Image(systemName: "person"))
+            PCTextField(placeHolder: "Username", text: $usernameText, keyboardType: .emailAddress,leadingImage: Image(systemName: "person"))
             PCTextField(placeHolder: "Password", text: $passwordText, keyboardType: .emailAddress,leadingImage: Image(systemName: "lock"),isPasswordField: true)
             
             Button(action: handleSignInAction) {
-                Text("LOGIN")
+                Text("Signup")
                     .font(.getFont(font: .interBold, size: 18))
                     .frame(height: 50)
                     .frame(maxWidth: .infinity)
@@ -50,18 +52,17 @@ struct LoginView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .padding(.all,20)
-        .navigationDestination(isPresented: $navigateToHome) {
-            HomeView()
-                .navigationBarBackButtonHidden()
-        }
     }
     func handleSignInAction(){
-        navigateToHome = true
+        withAnimation(.default.repeatCount(2)) {
+            emailIsWrong.toggle()
+        }
+        
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        SignupView()
     }
 }

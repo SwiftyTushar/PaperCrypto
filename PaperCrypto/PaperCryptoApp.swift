@@ -13,7 +13,7 @@ struct PaperCryptoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            WelcomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

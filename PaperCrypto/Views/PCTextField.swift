@@ -20,7 +20,7 @@ struct PCTextField: View {
             HStack(spacing:10){
                 leadingImage
                     .resizable()
-                    .frame(width: 16,height: 16)
+                    .frame(width: 15,height: 15)
                     .foregroundColor(.gray)
                     .padding(.leading,10)
                 if isPasswordField{
