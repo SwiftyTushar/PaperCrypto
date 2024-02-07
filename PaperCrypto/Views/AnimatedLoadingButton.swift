@@ -12,18 +12,19 @@ class AnimationButtonTimeManager{
 }
 
 struct AnimatedLoadingButton: View {
-    @State var buttonClicked = false
     
     var title:String
+    @State var buttonClicked = false
+    @Binding var loading:Bool
     var action:() -> Void
     var body: some View {
         HStack(spacing:-10){
             Spacer()
-            RoundedRectangle(cornerRadius: buttonClicked ? 40 : 20 )
+            RoundedRectangle(cornerRadius: loading ? 40 : 20 )
                 .foregroundColor(Color.appColorBlue)
-                .frame(width: buttonClicked ? 60 : .infinity,height: 60)
+                .frame(width: loading ? 60 : .infinity,height: 60)
                 .overlay {
-                    if buttonClicked{
+                    if loading{
                         ProgressView()
                             .frame(width: 30,height: 40)
                             .tint(.white)
@@ -37,7 +38,7 @@ struct AnimatedLoadingButton: View {
                 .onTapGesture {
                     action()
                     withAnimation(Animation.easeOut(duration: 0.5)) {
-                        buttonClicked.toggle()
+                        loading = true
                     }
                 }
             Spacer()
@@ -47,7 +48,7 @@ struct AnimatedLoadingButton: View {
 
 struct AnimatedLoadingButton_Previews: PreviewProvider {
     static var previews: some View {
-        AnimatedLoadingButton(title: "Sample"){
+        AnimatedLoadingButton(title: "Sample", loading: .constant(false)){
             
         }
             .frame(height: 60)

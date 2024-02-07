@@ -14,6 +14,9 @@ struct LoginView: View {
     @State var progressValue:Float = 0.5
     @Environment(\.dismiss) private var dismiss
     @State var navigateToHome = false
+    @StateObject var viewModel = LoginViewModel()
+    @State var loading = false
+    
     var body: some View {
         VStack(alignment:.leading,spacing:20){
             HStack{
@@ -37,25 +40,21 @@ struct LoginView: View {
             PCTextField(placeHolder: "Email", text: $emailText, keyboardType: .emailAddress,leadingImage: Image(systemName: "envelope"))
             PCTextField(placeHolder: "Password", text: $passwordText, keyboardType: .emailAddress,leadingImage: Image(systemName: "lock"),isPasswordField: true)
             
-//            Button(action: handleSignInAction) {
-//                Text("LOGIN")
-//                    .font(.getFont(font: .interBold, size: 18))
-//                    .frame(height: 50)
-//                    .frame(maxWidth: .infinity)
-//                    .foregroundColor(.white)
-//            }
-//            .background(Color.appColorBlue)
-//            .cornerRadius(10)
-//            HStack(spacing: -10){
-//                Spacer()
-//
-//                Spacer()
-//            }
-            AnimatedLoadingButton(title: "LOGIN") {
-                print("Show Data")
+            AnimatedLoadingButton(title: "LOGIN",loading: $viewModel.loading) {
+                viewModel.request.email = emailText
+                viewModel.request.password = passwordText
+                loading = viewModel.loading
+                viewModel.login()
             }
             Spacer()
         }
+        .alert("Error", isPresented: $viewModel.showError, actions: {
+            Button("Ok", role: .cancel) {
+                viewModel.stopLoadingWithAnimation()
+            }
+        }, message: {
+            Text(viewModel.errorMessage)
+        })
         .toolbar(.hidden, for: .navigationBar)
         .padding(.all,20)
         .navigationDestination(isPresented: $navigateToHome) {
