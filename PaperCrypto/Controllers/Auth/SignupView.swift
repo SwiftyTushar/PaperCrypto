@@ -48,6 +48,9 @@ struct SignupView: View {
             }
             .background(Color.appColorBlue)
             .cornerRadius(10)
+            
+            
+            
             Spacer()
         }
         .toolbar(.hidden, for: .navigationBar)
