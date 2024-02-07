@@ -28,6 +28,7 @@ struct PCTextField: View {
                         .padding(.vertical,20)
                 } else {
                     TextField(placeHolder, text: $text)
+                        .font(.getFont(font: .interMedium, size: 16))
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(capitalization)
                         .autocorrectionDisabled()

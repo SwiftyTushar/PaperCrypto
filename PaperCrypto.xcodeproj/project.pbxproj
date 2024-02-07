@@ -40,6 +40,9 @@
 		857031512B6FDF2F00494E15 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857031502B6FDF2F00494E15 /* LoginView.swift */; };
 		857031532B6FE10C00494E15 /* PCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857031522B6FE10C00494E15 /* PCTextField.swift */; };
 		8577D4372B73C8F4005D7FFE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8577D4362B73C8F4005D7FFE /* LoginViewModel.swift */; };
+		8577D4392B73C9B7005D7FFE /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8577D4382B73C9B7005D7FFE /* APICaller.swift */; };
+		8577D43B2B73CC9F005D7FFE /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8577D43A2B73CC9F005D7FFE /* AuthManager.swift */; };
+		8577D43D2B73CE97005D7FFE /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8577D43C2B73CE97005D7FFE /* AuthModels.swift */; };
 		857BC3312B6B4354009E12A3 /* PaperCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC3302B6B4354009E12A3 /* PaperCryptoApp.swift */; };
 		857BC3332B6B4354009E12A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857BC3322B6B4354009E12A3 /* ContentView.swift */; };
 		857BC3352B6B4355009E12A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 857BC3342B6B4355009E12A3 /* Assets.xcassets */; };
@@ -92,6 +95,9 @@
 		857031502B6FDF2F00494E15 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		857031522B6FE10C00494E15 /* PCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTextField.swift; sourceTree = "<group>"; };
 		8577D4362B73C8F4005D7FFE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8577D4382B73C9B7005D7FFE /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		8577D43A2B73CC9F005D7FFE /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		8577D43C2B73CE97005D7FFE /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
 		857BC32D2B6B4354009E12A3 /* PaperCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857BC3302B6B4354009E12A3 /* PaperCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperCryptoApp.swift; sourceTree = "<group>"; };
 		857BC3322B6B4354009E12A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -274,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				85E7B0E82B6F487100A318D4 /* CoinViewData.swift */,
+				8577D43C2B73CE97005D7FFE /* AuthModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +290,8 @@
 			children = (
 				85E7B0EB2B6F491E00A318D4 /* MockData.swift */,
 				8552B7612B71C9BF00A41C40 /* PCResources.swift */,
+				8577D4382B73C9B7005D7FFE /* APICaller.swift */,
+				8577D43A2B73CC9F005D7FFE /* AuthManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -388,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85AE9B9A2B70AA3900DF49F4 /* SignupView.swift in Sources */,
+				8577D43B2B73CC9F005D7FFE /* AuthManager.swift in Sources */,
 				85E7B0E92B6F487100A318D4 /* CoinViewData.swift in Sources */,
 				857BC33A2B6B4355009E12A3 /* Persistence.swift in Sources */,
 				85C93A482B6D59EA0099859C /* CryptoHeaderView.swift in Sources */,
@@ -397,6 +407,7 @@
 				8513A2D42B6B736300D47C66 /* CoinView.swift in Sources */,
 				8577D4372B73C8F4005D7FFE /* LoginViewModel.swift in Sources */,
 				8552B7642B71CBC100A41C40 /* PCButtonImage.swift in Sources */,
+				8577D43D2B73CE97005D7FFE /* AuthModels.swift in Sources */,
 				8513A29F2B6B548300D47C66 /* HomeScreenCardView.swift in Sources */,
 				8510D2262B6EBA66007F9526 /* CurrentPositionView.swift in Sources */,
 				85C93A4F2B6D6C8A0099859C /* BuySellView.swift in Sources */,
@@ -409,6 +420,7 @@
 				85E7B0EC2B6F491E00A318D4 /* MockData.swift in Sources */,
 				8513A2D12B6B697A00D47C66 /* Font+getFont.swift in Sources */,
 				85B755CE2B6E50950049CAA9 /* Color+Extensions.swift in Sources */,
+				8577D4392B73C9B7005D7FFE /* APICaller.swift in Sources */,
 				8552B7662B71F8EE00A41C40 /* AnimatedLoadingButton.swift in Sources */,
 				857031512B6FDF2F00494E15 /* LoginView.swift in Sources */,
 				857BC3312B6B4354009E12A3 /* PaperCryptoApp.swift in Sources */,
