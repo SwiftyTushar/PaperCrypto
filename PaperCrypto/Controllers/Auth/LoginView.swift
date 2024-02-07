@@ -37,22 +37,30 @@ struct LoginView: View {
             PCTextField(placeHolder: "Email", text: $emailText, keyboardType: .emailAddress,leadingImage: Image(systemName: "envelope"))
             PCTextField(placeHolder: "Password", text: $passwordText, keyboardType: .emailAddress,leadingImage: Image(systemName: "lock"),isPasswordField: true)
             
-            Button(action: handleSignInAction) {
-                Text("LOGIN")
-                    .font(.getFont(font: .interBold, size: 18))
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
+//            Button(action: handleSignInAction) {
+//                Text("LOGIN")
+//                    .font(.getFont(font: .interBold, size: 18))
+//                    .frame(height: 50)
+//                    .frame(maxWidth: .infinity)
+//                    .foregroundColor(.white)
+//            }
+//            .background(Color.appColorBlue)
+//            .cornerRadius(10)
+//            HStack(spacing: -10){
+//                Spacer()
+//
+//                Spacer()
+//            }
+            AnimatedLoadingButton(title: "LOGIN") {
+                print("Show Data")
             }
-            .background(Color.appColorBlue)
-            .cornerRadius(10)
             Spacer()
         }
         .toolbar(.hidden, for: .navigationBar)
         .padding(.all,20)
         .navigationDestination(isPresented: $navigateToHome) {
-            HomeView()
-                .navigationBarBackButtonHidden()
+            ContentView()
+                .toolbar(.hidden, for: .navigationBar)
         }
     }
     func handleSignInAction(){
