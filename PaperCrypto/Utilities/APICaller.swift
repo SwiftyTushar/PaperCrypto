@@ -27,6 +27,7 @@ class APICaller{
     enum APIEndpoint:String{
         case login = "auth/login"
         case signup = "auth/signup"
+        case trendingCoins = "exchange/trending_coins"
     }
     func makeRequest<T:Encodable,U:Decodable>(endpoint:APIEndpoint,auth:Bool = true,method:HTTPMethod,body:T,response:U.Type,completion:@escaping((U?,String?) -> Void)){
         guard let url = URL(string: baseURL + endpoint.rawValue) else {completion(nil,"URL not found!");return}
@@ -55,7 +56,6 @@ class APICaller{
             print("======Headers=======")
         }
         URLSession.shared.dataTask(with: request) { data, mRequest, error in
-            print("dataTask--- \(error?.localizedDescription ?? "")")
             if error != nil{
                 completion(nil,error?.localizedDescription)
             } else {
