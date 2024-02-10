@@ -18,7 +18,6 @@ struct HomeView: View {
                 }
                 .listRowSeparator(.hidden, edges: .all)
                 
-                
                 Section(
                     header: Text("Trending Coins")
                         .font(.getFont(font: .interBold, size: 20))

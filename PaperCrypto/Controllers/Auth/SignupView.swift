@@ -13,6 +13,8 @@ struct SignupView: View {
     @State var usernameText:String = ""
     @State var nameText:String = ""
     @State var emailIsWrong = false
+    @StateObject var viewModel = SignupViewModel()
+    
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack(alignment:.leading,spacing:20){
@@ -38,23 +40,28 @@ struct SignupView: View {
             PCTextField(placeHolder: "Name", text: $nameText, keyboardType: .emailAddress,leadingImage: Image(systemName: "person"))
             PCTextField(placeHolder: "Username", text: $usernameText, keyboardType: .emailAddress,leadingImage: Image(systemName: "person"))
             PCTextField(placeHolder: "Password", text: $passwordText, keyboardType: .emailAddress,leadingImage: Image(systemName: "lock"),isPasswordField: true)
-            
-            Button(action: handleSignInAction) {
-                Text("Signup")
-                    .font(.getFont(font: .interBold, size: 18))
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
+            AnimatedLoadingButton(title: "SIGNUP", loading: $viewModel.loading) {
+                viewModel.request.email = emailText
+                viewModel.request.name = nameText
+                viewModel.request.username = usernameText
+                viewModel.request.password = passwordText
+                viewModel.signup()
             }
-            .background(Color.appColorBlue)
-            .cornerRadius(10)
-            
-            
-            
             Spacer()
         }
+        .alert("Error", isPresented: $viewModel.showError, actions: {
+            Button("Ok", role: .cancel) {
+                viewModel.stopLoading()
+            }
+        }, message: {
+            Text(viewModel.errorMessage)
+        })
         .toolbar(.hidden, for: .navigationBar)
         .padding(.all,20)
+        .navigationDestination(isPresented: $viewModel.success) {
+            ContentView()
+                .toolbar(.hidden, for: .navigationBar)
+        }
     }
     func handleSignInAction(){
         withAnimation(.default.repeatCount(2)) {

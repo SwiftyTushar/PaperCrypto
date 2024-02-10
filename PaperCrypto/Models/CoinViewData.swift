@@ -18,3 +18,4 @@ struct CoinViewData:Hashable{
         return lhs.title == rhs.title
     }
 }
+

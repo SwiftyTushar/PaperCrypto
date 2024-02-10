@@ -32,7 +32,7 @@ struct PCTextField: View {
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(capitalization)
                         .autocorrectionDisabled()
-                        .padding(.vertical,20)
+                        .padding(.vertical,15)
                 }
             }
             .overlay {

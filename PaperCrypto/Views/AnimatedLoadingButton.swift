@@ -6,10 +6,7 @@
 //
 
 import SwiftUI
-
-class AnimationButtonTimeManager{
-    
-}
+import UIKit
 
 struct AnimatedLoadingButton: View {
     
@@ -18,31 +15,35 @@ struct AnimatedLoadingButton: View {
     @Binding var loading:Bool
     var action:() -> Void
     var body: some View {
-        HStack(spacing:-10){
-            Spacer()
-            RoundedRectangle(cornerRadius: loading ? 40 : 20 )
-                .foregroundColor(Color.appColorBlue)
-                .frame(width: loading ? 60 : .infinity,height: 60)
-                .overlay {
-                    if loading{
-                        ProgressView()
-                            .frame(width: 30,height: 40)
-                            .tint(.white)
-                            
-                    } else {
-                        Text(title)
-                            .foregroundColor(.white)
-                            .font(.getFont(font: .interMedium, size: 20))
+        GeometryReader(content: { geometry in
+            HStack(spacing:-10){
+                Spacer()
+                RoundedRectangle(cornerRadius: loading ? 40 : 8 )
+                    .foregroundColor(Color.appColorBlue)
+                    .frame(width: loading ? 60 : geometry.size.width)
+                    .overlay {
+                        if loading{
+                            ProgressView()
+                                .frame(width: 30,height: 40)
+                                .tint(.white)
+                                
+                        } else {
+                            Text(title)
+                                .foregroundColor(.white)
+                                .font(.getFont(font: .interMedium, size: 18))
+                        }
                     }
-                }
-                .onTapGesture {
-                    action()
-                    withAnimation(Animation.easeOut(duration: 0.5)) {
-                        loading = true
+                    .onTapGesture {
+                        action()
+                        withAnimation(Animation.easeOut(duration: 0.5)) {
+                            loading = true
+                        }
                     }
-                }
-            Spacer()
-        }
+                Spacer()
+            }
+        })
+        .frame(height: 45)
+        
     }
 }
 
