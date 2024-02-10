@@ -15,10 +15,14 @@ struct TrendingCoinsResponse: Decodable{
 }
 
 //MARK: Coin
-struct Coin: Decodable{
-    let symbol, baseAsset: String
+struct Coin: Decodable,Identifiable{
+    var id: String {symbol}
+    let name,symbol, baseAsset: String
     let quoteAsset: String
     let openPrice, lowPrice, highPrice, lastPrice: String
     let volume, bidPrice, askPrice: String
     let at: Int
+    let percentageChange:Float
 }
+//MARK: EmptyRequestBody
+struct EmptyRequestBody: Encodable{}

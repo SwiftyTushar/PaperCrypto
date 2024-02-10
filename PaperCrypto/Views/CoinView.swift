@@ -8,48 +8,53 @@
 import SwiftUI
 
 struct CoinView: View {
-    @State var coinData:CoinViewData
+    @State var coinData:Coin
     var body: some View {
-        RoundedRectangle(cornerRadius:10)
-            .frame(width: .infinity,height: 70)
-            .foregroundColor(.white)
-            .shadow(color: .gray.opacity(0.5), radius: 1,x:0,y:0)
-            .overlay {
-                HStack(spacing: 16){
-                    Spacer()
-                        .frame(width: 0)
-                    Image("bitcoin")
-                        .resizable()
-                        .frame(width: 40,height: 40)
-                    VStack(alignment: .leading){
-                        HStack{
-                            Text(coinData.title)
-                                .font(.getFont(font: .interMedium, size: 18))
-                                .foregroundColor(.black)
-                            Spacer()
-                            Text(coinData.price)
-                                .font(.getFont(font: .interMedium, size: 15))
-                                .foregroundColor(.black)
+        GeometryReader(content: { geometry in
+            RoundedRectangle(cornerRadius:10)
+                .frame(width: geometry.size.width)
+                .foregroundColor(.white)
+                .shadow(color: .gray.opacity(0.5), radius: 1,x:0,y:0)
+                .overlay {
+                    HStack(spacing: 16){
+                        Spacer()
+                            .frame(width: 0)
+                        Image(coinData.baseAsset)
+                            .resizable()
+                            .frame(width: 40,height: 40)
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text(coinData.name)
+                                    .font(.getFont(font: .interMedium, size: 18))
+                                    .foregroundColor(.black)
+                                Spacer()
+                                
+                                Text(" \(Float(coinData.lastPrice)!.amountWithCurrency(currency: "₹"))")
+                                    .font(.getFont(font: .interMedium, size: 16))
+                                    .foregroundColor(.black)
+                            }
+                            HStack{
+                                Text(coinData.baseAsset.uppercased())
+                                    .font(.getFont(font: .interMedium, size: 14))
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                Text("\(coinData.percentageChange > 0 ? "+" : "")\(String(format: "%.2f", coinData.percentageChange))%")
+                                
+                                    .font(.getFont(font: .interMedium, size: 12))
+                                    .foregroundColor(coinData.percentageChange > 0 ? .green : .red)
+                            }
                         }
-                        HStack{
-                            Text(coinData.subTitle)
-                                .font(.getFont(font: .interMedium, size: 14))
-                                .foregroundColor(.gray)
-                            Spacer()
-                            Text(coinData.pNLPercentage)
-                                .font(.getFont(font: .interMedium, size: 10))
-                                .foregroundColor(.red)
-                        }
+                        Spacer()
                     }
-                    Spacer()
                 }
-            }
+        })
+        .frame(height: 70)
     }
 }
 
 struct CoinView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinView(coinData: MockData.sharedInstance.coinData[0])
+        CoinView(coinData: MockData.sharedInstance.mockCoin)
             .padding()
     }
 }

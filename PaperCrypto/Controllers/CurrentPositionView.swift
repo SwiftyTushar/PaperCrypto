@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CurrentPositionView: View {
-    @State var coinData:[CoinViewData] = MockData.sharedInstance.coinData
+    @State var coinsData:[Coin] = [MockData.sharedInstance.mockCoin]
     var body: some View {
         ScrollView{
             VStack{
@@ -18,8 +18,8 @@ struct CurrentPositionView: View {
                 Text("Total P&L")
                     .font(.getFont(font: .interMedium, size: 16))
                     .foregroundColor(.gray)
-                ForEach(coinData, id: \.self){ coinData in
-                    CoinView(coinData:coinData)
+                ForEach(coinsData){ coinData in
+                    CoinView(coinData:MockData.sharedInstance.mockCoin)
                         .padding(.horizontal,20)
                 }
             }

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TradeHistoryView: View {
-    @State var cryptos = MockData.sharedInstance.coinData
+    @State var cryptos = [MockData.sharedInstance.mockCoin]
     var body: some View {
         List{
-            ForEach(cryptos, id: \.self) { coin in
+            ForEach(cryptos) { coin in
                 CoinView(coinData: coin)
                     .padding(.vertical,-5)
                     .onTapGesture {

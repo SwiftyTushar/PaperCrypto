@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var cryptos = MockData.sharedInstance.coinData
-    @State private var selectedCrypto: CoinViewData?
+    @State private var selectedCoin: Coin?
+    @StateObject private var viewModel = HomeViewModel()
+    
     var body: some View {
         VStack(alignment: .leading){
             List{
@@ -18,35 +19,40 @@ struct HomeView: View {
                 }
                 .listRowSeparator(.hidden, edges: .all)
                 
-                Section(
-                    header: Text("Trending Coins")
+                Section{
+                    Text("Trending Coins")
                         .font(.getFont(font: .interBold, size: 20))
                         .padding(.vertical,-5)
-                ) {
-                    ForEach(cryptos, id: \.self) { coin in
+                        .listRowSeparator(.hidden)
+                }
+                Section{
+                    ForEach(viewModel.trendingCoins) { coin in
                         CoinView(coinData: coin)
                             .padding(.vertical,-5)
                             .onTapGesture {
-                                selectedCrypto = coin
+                                selectedCoin = coin
                             }
                         .listRowSeparator(.hidden, edges: .all)
                     }
                     .listRowBackground(Color.clear)
                 }
+//                Section(
+//                    header:
+//                ) {
+//                    
+//                }
                 .headerProminence(.increased)
             }
             .listStyle(.plain)
+            .scrollIndicators(.hidden)
+        }
+        .refreshable {
+            viewModel.fetchTrendingCoins()
         }
         .navigationTitle("Home")
-        .background(
-            NavigationLink(
-                destination: CoinDetailsView(),
-                tag: selectedCrypto ?? MockData.sharedInstance.coinData[0],
-                selection: $selectedCrypto
-            ) {
-                EmptyView()
-            }
-        )
+        .onAppear(perform: {
+            viewModel.fetchTrendingCoins()
+        })
     }
 }
 

@@ -10,10 +10,5 @@ import Foundation
 class MockData{
     static let sharedInstance = MockData()
     private init(){}
-    var coinData:[CoinViewData] = [
-        CoinViewData(title: "Bitcoin", subTitle: "BTC", price: "+₹1234.0", pNLPercentage: "-12.9%"),
-        CoinViewData(title: "Shiba-Inu", subTitle: "SHIB", price: "+₹0.00009", pNLPercentage: "+12.9%"),
-        CoinViewData(title: "Cardano", subTitle: "ADA", price: "+₹0.90", pNLPercentage: "+1.0%"),
-        CoinViewData(title: "Doge Coin", subTitle: "DOG", price: "+₹21.0", pNLPercentage: "1.0%")
-    ]
+    let mockCoin = Coin(name: "Bitcoin", symbol: "btcinr",baseAsset: "btc",quoteAsset: "inr",openPrice: "3985665",lowPrice: "3978985.0",highPrice: "4200000.0",lastPrice: "4066244.0",volume: "11.24252",bidPrice: "4039202.0",askPrice: "4040396.0",at: 1707538016000, percentageChange: 1.5)
 }

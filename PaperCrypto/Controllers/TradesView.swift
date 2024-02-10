@@ -15,7 +15,7 @@ struct TradesView: View {
             TradesHeaderView()
 
             Picker("", selection: $selectedTab) {
-                Text("Positions").tag(0)
+                Text("Active Positions").tag(0)
                 Text("History").tag(1)
             }
             .pickerStyle(.segmented)
