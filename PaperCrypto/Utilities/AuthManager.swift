@@ -12,9 +12,9 @@ class AuthManager{
     
     static let shared = AuthManager()
     private init(){}
-    private let accessTokenKey = "com.tushar.chat.AuthManager.accessTokenKey"
-    private let userAuthKey = "com.tushar.chat.AuthManager.userAuthKey"
-    private let userIDKey = "com.tushar.chat.userID"
+    private let accessTokenKey = "com.tushar.paper.crypto.AuthManager.accessTokenKey"
+    private let userAuthKey = "com.tushar.paper.crypto.AuthManager.userAuthKey"
+    private let userIDKey = "com.tushar.paper.crypto.userID"
     
     func saveUserID(id:String){
         UserDefaults.standard.setValue(id, forKey: userIDKey)

@@ -8,11 +8,8 @@
 import Foundation
 import SwiftUI
 
-class LoginViewModel: ObservableObject{
+class LoginViewModel: BaseViewModel{
     var request = LoginRequest()
-    @Published var loading:Bool = false
-    @Published var showError:Bool = false
-    @Published var errorMessage = ""
     
     func stopLoadingWithAnimation(){
         withAnimation {
@@ -52,6 +49,7 @@ class LoginViewModel: ObservableObject{
                                 self.errorMessage = response.message ?? ""
                             } else {
                                 AuthManager.shared.saveToken(accessToken: response.token ?? "")
+                                self.success = true
                             }
                         }
                     }

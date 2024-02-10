@@ -57,7 +57,7 @@ struct LoginView: View {
         })
         .toolbar(.hidden, for: .navigationBar)
         .padding(.all,20)
-        .navigationDestination(isPresented: $navigateToHome) {
+        .navigationDestination(isPresented: $viewModel.success) {
             ContentView()
                 .toolbar(.hidden, for: .navigationBar)
         }
