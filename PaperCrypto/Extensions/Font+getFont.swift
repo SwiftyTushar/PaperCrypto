@@ -11,6 +11,10 @@ enum AppFonts:String{
     case interMedium = "Inter-Medium"
     case interBold = "Inter-Bold"
     case interRegular = "Inter-Regular"
+    case nunitoRegular = "Nunito-Regular"
+    case nunitoSemibold = "Nunito-SemiBold"
+    case nunitoMedium = "Nunito-Medium"
+    case nunitoBold = "Nunito-Bold"
 }
 
 extension Font{

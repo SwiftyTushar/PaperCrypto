@@ -19,7 +19,7 @@ struct CoinView: View {
                     HStack(spacing: 16){
                         Spacer()
                             .frame(width: 0)
-                        Image(coinData.baseAsset)
+                        Image(coinData.symbol)
                             .resizable()
                             .frame(width: 40,height: 40)
                         VStack(alignment: .leading){
@@ -29,12 +29,12 @@ struct CoinView: View {
                                     .foregroundColor(.black)
                                 Spacer()
                                 
-                                Text(" \(Float(coinData.lastPrice)!.amountWithCurrency(currency: "₹"))")
+                                Text(" \(Float(coinData.last)!.amountWithCurrency(currency: "₹"))")
                                     .font(.getFont(font: .interMedium, size: 16))
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.black.opacity(0.8))
                             }
                             HStack{
-                                Text(coinData.baseAsset.uppercased())
+                                Text(coinData.symbol.uppercased())
                                     .font(.getFont(font: .interMedium, size: 14))
                                     .foregroundColor(.gray)
                                 Spacer()

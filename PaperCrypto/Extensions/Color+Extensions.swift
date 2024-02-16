@@ -13,5 +13,10 @@ extension Color{
             return Color("colorBlue")
         }
     }
+    static var appColorBorderGray:Color{
+        get{
+            return Color("borderColorGray")
+        }
+    }
 }
 

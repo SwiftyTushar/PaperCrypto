@@ -9,12 +9,20 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    init(){
+        UITabBar.appearance().backgroundColor = UIColor.systemGroupedBackground
+        UITabBar.appearance().isTranslucent = true
+    }
     var body: some View {
         NavigationView {
             TabView {
                 HomeView()
                     .tabItem {
                         Label("Home", systemImage: "house")
+                    }
+                MarketsView()
+                    .tabItem {
+                        Label("Market",systemImage: "align.vertical.bottom")
                     }
                 TradesView()
                     .tabItem {

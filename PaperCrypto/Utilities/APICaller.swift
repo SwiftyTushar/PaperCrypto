@@ -28,6 +28,7 @@ class APICaller{
         case login = "auth/login"
         case signup = "auth/signup"
         case trendingCoins = "exchange/trending_coins"
+        case allCoins = "exchange/cryptos/all"
     }
     func makeRequest<T:Encodable,U:Decodable>(endpoint:APIEndpoint,auth:Bool = true,method:HTTPMethod,body:T,response:U.Type,completion:@escaping((U?,String?) -> Void)){
         guard let url = URL(string: baseURL + endpoint.rawValue) else {completion(nil,"URL not found!");return}
