@@ -36,11 +36,6 @@ struct HomeView: View {
                     }
                     .listRowBackground(Color.clear)
                 }
-//                Section(
-//                    header:
-//                ) {
-//                    
-//                }
                 .headerProminence(.increased)
             }
             .listStyle(.plain)
