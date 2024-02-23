@@ -18,6 +18,8 @@ struct PlaceOrdersView: View {
     @State var stopLoss = ""
     @State var orderType = 0
     @State var entryPrice = ""
+    @Environment(\.dismiss) private var dismiss
+    @Binding var orderPlaced:Bool
     
     var disableSlider: Bool {
         if orderType == 0 {
@@ -120,6 +122,12 @@ struct PlaceOrdersView: View {
             .disabled(disableSlider)
             .padding()
         }
+        .onChange(of: viewModel.success,perform: {value in
+            if value{
+                orderPlaced = true
+                dismiss()
+            }
+        })
         .onChange(of: inRupees, perform: { value in
             print("onChangeOfValue---")
             inCrypto = viewModel.convertRupeesToAsset(inr: inRupees)
@@ -129,5 +137,5 @@ struct PlaceOrdersView: View {
 }
 
 #Preview {
-    PlaceOrdersView(coin: MockData.sharedInstance.mockCoin)
+    PlaceOrdersView(orderPlaced: .constant(false), coin: MockData.sharedInstance.mockCoin)
 }

@@ -11,6 +11,8 @@ struct MarketsView: View {
     @StateObject var viewModel = MarketViewModel()
     @State private var navigateToDetails:Bool = false
     @State private var selectedCoin:Coin = MockData.sharedInstance.mockCoin
+    @Binding var orderPlaced:Bool
+    
     var body: some View {
         VStack{
             HStack(alignment: .center){
@@ -93,11 +95,11 @@ struct MarketsView: View {
         })
         .navigationDestination(isPresented: $navigateToDetails) {
             //CoinDetailsView(symbol: selectedCoin)
-            PlaceOrdersView(coin: selectedCoin)
+            PlaceOrdersView(orderPlaced: $orderPlaced, coin: selectedCoin)
         }
     }
 }
 
 #Preview {
-    MarketsView()
+    MarketsView(orderPlaced: .constant(false))
 }
