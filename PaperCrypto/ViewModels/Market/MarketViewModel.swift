@@ -20,8 +20,8 @@ class MarketViewModel: BaseViewModel{
                     self.errorMessage = error ?? ""
                 } else {
                     if let fetchedCoins = response?.data{
-                        self.coins = fetchedCoins
                         self.allCoins = fetchedCoins
+                        self.filterCoins()
                     }
                 }
             }
@@ -34,11 +34,11 @@ class MarketViewModel: BaseViewModel{
             } else {
                 if selectedSegmentIndex == 1{
                     coins = allCoins.filter({ coin in
-                        return coin.percentageChange > 0
+                        return coin.percentageChange > 0.00
                     })
                 } else {
                     coins = allCoins.filter({ coin in
-                        return coin.percentageChange < 0
+                        return coin.percentageChange < 0.00
                     })
                 }
             }

@@ -29,12 +29,14 @@ class APICaller{
         case signup = "auth/signup"
         case trendingCoins = "exchange/trending_coins"
         case allCoins = "exchange/cryptos/all"
+        case kLines = "exchange/cryptos/klines"
+        case placeOrder = "exchange/cryptos/placeorder"
     }
-    func makeRequest<T:Encodable,U:Decodable>(endpoint:APIEndpoint,auth:Bool = true,method:HTTPMethod,body:T,response:U.Type,completion:@escaping((U?,String?) -> Void)){
-        guard let url = URL(string: baseURL + endpoint.rawValue) else {completion(nil,"URL not found!");return}
-        print("======URL=======")
-        print("METHOD:\(method.rawValue) URL: \(url.absoluteString)")
-        print("======URL=======")
+    func makeRequest<T:Encodable,U:Decodable>(endpoint:APIEndpoint,auth:Bool = true,method:HTTPMethod,body:T,response:U.Type,queryItems:[String:String] = [:],completion:@escaping((U?,String?) -> Void)){
+        var urlComponent = URLComponents(string: baseURL + endpoint.rawValue)
+        
+        guard let url = urlComponent?.url else {completion(nil,"URL not found!");return}
+        
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
@@ -56,6 +58,17 @@ class APICaller{
             }
             print("======Headers=======")
         }
+        
+        if !queryItems.isEmpty{
+            urlComponent?.queryItems = []
+            for (key,value) in queryItems{
+                urlComponent?.queryItems?.append(.init(name: key, value: value))
+            }
+            request.url = urlComponent?.url
+        }
+        print("======URL=======")
+        print("METHOD:\(method.rawValue) URL: \(request.url?.absoluteString ?? "nil")")
+        print("======URL=======")
         URLSession.shared.dataTask(with: request) { data, mRequest, error in
             if error != nil{
                 completion(nil,error?.localizedDescription)

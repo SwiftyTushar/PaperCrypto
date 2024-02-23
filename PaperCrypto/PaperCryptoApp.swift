@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 struct PaperCryptoApp: App {
@@ -16,7 +17,10 @@ struct PaperCryptoApp: App {
     var body: some Scene {
         WindowGroup {
             if AuthManager.shared.authenticated(){
-                ContentView()
+                NavigationStack{
+                    ContentView()
+                        .toolbar(.hidden, for: .navigationBar)
+                }
             } else {
                 WelcomeView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
@@ -28,6 +32,7 @@ struct PaperCryptoApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         PCSocketManager.sharedInstance.establishSocketConnection()
+        IQKeyboardManager.shared.enable = true
 //        PCSocketManager.sharedInstance.checkConnection()
         return true
     }

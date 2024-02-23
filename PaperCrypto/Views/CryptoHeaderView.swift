@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CryptoHeaderView: View {
     @Environment(\.dismiss) private var dismiss
+    var coin:Coin
     var body: some View {
         Rectangle()
             .foregroundColor(.white)
@@ -20,29 +21,29 @@ struct CryptoHeaderView: View {
                         .onTapGesture {
                             dismiss()
                         }
-                    Image("bitcoin")
+                    Image(coin.symbol)
                         .resizable()
                         .frame(width: 30,height: 30)
-                    Text("Bitcoin")
+                    Text(coin.name)
                         .font(.getFont(font: .interMedium, size: 16))
-                    Text("(BTC)")
+                    Text("(\(coin.symbol))")
                         .font(.getFont(font: .interMedium, size: 12))
                         .foregroundColor(.gray.opacity(0.7))
                     Image(systemName: "star")
                         .foregroundColor(.yellow)
                     Spacer()
-                    Label {
-                        Text("Exchange")
-                            .font(.getFont(font: .interMedium, size: 12))
-                            .foregroundColor(.blue)
-                    } icon: {
-                        Image("icExchange")
-                            .resizable()
-                            .frame(width: 20,height: 20)
-                    }
-                    .padding(.all,8)
-                    .background(.blue.opacity(0.2))
-                    .cornerRadius(20)
+//                    Label {
+//                        Text("Exchange")
+//                            .font(.getFont(font: .interMedium, size: 12))
+//                            .foregroundColor(.blue)
+//                    } icon: {
+//                        Image("icExchange")
+//                            .resizable()
+//                            .frame(width: 20,height: 20)
+//                    }
+//                    .padding(.all,8)
+//                    .background(.blue.opacity(0.2))
+//                    .cornerRadius(20)
                     Spacer()
                         .frame(width: 0)
                 }
@@ -52,6 +53,6 @@ struct CryptoHeaderView: View {
 
 struct CryptoHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoHeaderView()
+        CryptoHeaderView(coin: MockData.sharedInstance.mockCoin)
     }
 }
