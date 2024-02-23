@@ -30,6 +30,7 @@ class SignupViewModel: BaseViewModel{
                             self.errorMessage = response.message ?? ""
                         } else {
                             AuthManager.shared.saveToken(accessToken: res?.token ?? "")
+                            AuthManager.shared.saveUserID(id: res?.userID ?? "")
                             self.success = true
                         }
                     }

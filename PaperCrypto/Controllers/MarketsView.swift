@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MarketsView: View {
-    @State var myBoold = false
     @StateObject var viewModel = MarketViewModel()
-    
+    @State private var navigateToDetails:Bool = false
+    @State private var selectedCoin:Coin = MockData.sharedInstance.mockCoin
     var body: some View {
         VStack{
             HStack(alignment: .center){
@@ -66,7 +66,7 @@ struct MarketsView: View {
                         viewModel.filterCoins()
                     }
                 ))
-                    
+                
                 Color.appColorBorderGray
                     .frame(height: 0.5)
                     .padding(.top,-6)
@@ -78,6 +78,11 @@ struct MarketsView: View {
                     CoinView(coinData: coin)
                         .listRowSeparator(.hidden)
                         .padding([.vertical,.horizontal],-5)
+                        .onTapGesture {
+                            print("onTap--")
+                            selectedCoin = coin
+                            navigateToDetails = true
+                        }
                 }
 
             }
@@ -86,6 +91,10 @@ struct MarketsView: View {
         .onAppear(perform: {
             viewModel.fetchAllCoins()
         })
+        .navigationDestination(isPresented: $navigateToDetails) {
+            //CoinDetailsView(symbol: selectedCoin)
+            PlaceOrdersView(coin: selectedCoin)
+        }
     }
 }
 

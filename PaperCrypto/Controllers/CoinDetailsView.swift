@@ -30,77 +30,39 @@ let data: [ValuePerCategory] = [
 ]
 
 struct CoinDetailsView: View {
-    private var chartTimeStamps:[String] = ["1 H","24 H","1 W","1 M","6 M","1 Y","All"]
-    @State var selectedTimeStamp = "1 H"
+    public var selectedSymbol:Coin
+    private let chartTimeStamps = ["1 H","24 H","1 W","1 M","6 M","1 Y","All"]
+    @State private var selectedTimeStamp = "1 H"
+    @StateObject private var viewModel = CoinDetailViewModel()
     
+    init(symbol:Coin) {
+        selectedSymbol = symbol
+    }
     var body: some View {
         VStack(alignment:.leading,spacing: 8){
-            CryptoHeaderView()
+            CryptoHeaderView(coin: selectedSymbol)
             HStack{
                 Spacer()
                     .frame(width: 20)
-                Text("$20502")
+                Text(" \(Float(selectedSymbol.last)!.amountWithCurrency(currency: "₹"))")
                     .font(.getFont(font: .interMedium, size: 16))
-                Text("-2.1%")
+                Text("\(selectedSymbol.percentageChange > 0 ? "+" : "")\(String(format: "%.2f", selectedSymbol.percentageChange))%")
                     .font(.getFont(font: .interMedium, size: 12))
-                    .foregroundColor(.red)
+                    .foregroundColor(selectedSymbol.percentageChange > 0 ? .green : .red)
             }
             Spacer()
                 .frame(height: 20)
-            Chart(data, id: \.category) { item in
-                LineMark(
-                    x: .value("Category", item.category),
-                    y: .value("Value", item.value)
-                )
-            }
-            .chartXAxis(content: {
-                AxisMarks(stroke: StrokeStyle(lineWidth: 0))
-            })
-            .chartYAxis(.hidden)
-            .frame(height: 350)
-            VStack{
-                
-            }
-            ScrollView(.horizontal) {
-                LazyHStack(spacing:8){
-                    ForEach(chartTimeStamps,id: \.self) { timeStamp in
-                        Capsule()
-                            .stroke(Color.blue,lineWidth:selectedTimeStamp == timeStamp ? 2 : 0)
-                            .frame(width: 50,height: 27)
-                            .background(.gray.opacity(0.09))
-                            .cornerRadius(20)
-                            .overlay {
-                                Text(timeStamp)
-                                    .foregroundColor(selectedTimeStamp == timeStamp ? .blue : .gray)
-                                    .font(.getFont(font: .interRegular, size: 12))
-                            }
-                            .onTapGesture {
-                                selectedTimeStamp = timeStamp
-                            }
-//                        Button(timeStamp) {
-//
-//                        }
-//                        .font(.getFont(font: .interMedium, size: 14))
-//                        .foregroundColor(.black.opacity(0.6))
-//                        .frame(width: 48,height: 30)
-//                        .background(.gray.opacity(0.09))
-//                        .cornerRadius(20)
-                        
-                    }
-                }
-            }
-            .scrollIndicators(.hidden)
-            .frame(height: 50)
-            .padding([.leading,.trailing],10)
+           
             Spacer()
             BuySellView()
         }
         .toolbar(.hidden, for: .navigationBar)
+        .onAppear {
+            print("")
+        }
     }
 }
 
-struct CoinDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoinDetailsView()
-    }
+#Preview {
+    CoinDetailsView(symbol: MockData.sharedInstance.mockCoin)
 }

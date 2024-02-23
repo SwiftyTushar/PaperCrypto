@@ -14,21 +14,19 @@ struct ContentView: View {
         UITabBar.appearance().isTranslucent = true
     }
     var body: some View {
-        NavigationView {
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                MarketsView()
-                    .tabItem {
-                        Label("Market",systemImage: "align.vertical.bottom")
-                    }
-                TradesView()
-                    .tabItem {
-                        Label("Trades", systemImage: "book")
-                    }
-            }
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            MarketsView()
+                .tabItem {
+                    Label("Market",systemImage: "align.vertical.bottom")
+                }
+            TradesView()
+                .tabItem {
+                    Label("Trades", systemImage: "book")
+                }
         }
     }
 }

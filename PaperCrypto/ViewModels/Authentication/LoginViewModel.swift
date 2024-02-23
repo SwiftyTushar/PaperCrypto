@@ -49,6 +49,7 @@ class LoginViewModel: BaseViewModel{
                                 self.errorMessage = response.message ?? ""
                             } else {
                                 AuthManager.shared.saveToken(accessToken: response.token ?? "")
+                                AuthManager.shared.saveUserID(id: response.userID ?? "")
                                 self.success = true
                             }
                         }

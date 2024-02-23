@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "iqkeyboardmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hackiftekhar/IQKeyboardManager.git",
+      "state" : {
+        "revision" : "aa656e1f0d95f0154622f453599318602848be3b",
+        "version" : "7.0.1"
+      }
+    },
+    {
+      "identity" : "slidebutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/no-comment/SlideButton",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5eacebba4d7deeb693592bc9a62ab2d2181e133b"
+      }
+    }
+  ],
+  "version" : 2
+}

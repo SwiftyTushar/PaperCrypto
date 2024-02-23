@@ -16,7 +16,7 @@ struct LoginRequest: Encodable{
 
 struct AuthenticationResponse: Decodable{
     var success:Bool?
-    var message,token:String?
+    var message,token,userID:String?
 }
 //MARK: Signup
 struct SignupRequest: Encodable{

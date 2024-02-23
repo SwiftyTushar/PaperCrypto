@@ -17,7 +17,8 @@ struct TrendingCoinsResponse: Decodable{
 //MARK: Coin
 struct Coin: Decodable,Identifiable{
     var id: String {symbol}
-    let name, symbol, open, last: String
+    let name, symbol, open: String
+    var last:String
     let sell, buy: String
     let percentageChange: Double
 
