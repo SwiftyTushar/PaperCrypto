@@ -34,9 +34,10 @@ struct ContentView: View {
                 }
                 .tag(2)
         }
-        .onChange(of: orderPlaced) { _ in
-            if orderPlaced{
+        .onChange(of: orderPlaced) { newValue in
+            if newValue{
                 selectedIndex = 2
+                orderPlaced = false
             }
         }
     }

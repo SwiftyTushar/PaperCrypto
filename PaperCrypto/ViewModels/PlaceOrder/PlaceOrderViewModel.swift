@@ -8,8 +8,9 @@
 import Foundation
 
 class PlaceOrderViewModel: BaseViewModel{
-    @Published var coin:Coin = MockData.sharedInstance.mockCoin
+
     var request = PlaceOrderRequest()
+   
     
     func placeOrder(){
         APICaller.sharedInstance.makeRequest(endpoint: .placeOrder, method: .post, body: request, response: PlaceOrderResponse.self) { response, error in
@@ -24,7 +25,7 @@ class PlaceOrderViewModel: BaseViewModel{
             }
         }
     }
-    func convertRupeesToAsset(inr:String) -> String{
+    func convertRupeesToAsset(inr:String,coin:Coin) -> String{
         guard let convertedINR = Float(inr) else {return "0.0"}
         guard let convertedCryptoPrice = Float(coin.last) else {return "0.0"}
         print("convertRupeesToAsset----- \(convertedINR) crypto \(convertedCryptoPrice) total \(convertedINR/convertedCryptoPrice)")
