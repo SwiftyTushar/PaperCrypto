@@ -56,7 +56,7 @@ struct PlaceOrdersView: View {
                 Text("ESTIMATED \(selectedOrderType == .buy ? "BUYING" : "SELLING") PRICE")
                     .font(.getFont(font: .nunitoBold, size: 12))
                     .foregroundStyle(.gray)
-                Text(MockData.sharedInstance.mockCoin.last)
+                Text(coin.last)
                     .font(.getFont(font: .nunitoMedium, size: 18))
                 HStack(spacing:5){
                     Rectangle()
@@ -129,8 +129,7 @@ struct PlaceOrdersView: View {
             }
         })
         .onChange(of: inRupees, perform: { value in
-            print("onChangeOfValue---")
-            inCrypto = viewModel.convertRupeesToAsset(inr: inRupees)
+            inCrypto = viewModel.convertRupeesToAsset(inr: inRupees, coin: coin)
         })
         .toolbar(.hidden, for: .navigationBar)
     }
