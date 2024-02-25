@@ -18,11 +18,25 @@ class PCSocketManager{
         socket = manager.defaultSocket
         socket?.on("connect") { _, _ in
             print("Socket Connected")
+           // self.getRealtimeUpdates(for: ["btc@inr"])
         }
     }
     func establishSocketConnection(){
         socket?.connect()
     }
+    private func fetchRealtimeUpdate(event:PCSocketEvents,completion:@escaping([Any])->Void){
+        socket?.on(event.rawValue, callback: { data, ack in
+            completion(data)
+        })
+    }
+    func getRealtimeUpdates(orders:[Order]){
+        if !orders.isEmpty{
+            let orderTickers = orders.map{$0.symbol}
+            
+            fetchRealtimeUpdate(event: .tickerUpdate) { response in
+               
+            }
+        }
+    }
 }
-
 

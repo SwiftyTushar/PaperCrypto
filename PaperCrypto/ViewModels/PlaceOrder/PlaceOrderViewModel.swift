@@ -13,6 +13,7 @@ class PlaceOrderViewModel: BaseViewModel{
    
     
     func placeOrder(){
+        request.userID = AuthManager.shared.getUserID()
         APICaller.sharedInstance.makeRequest(endpoint: .placeOrder, method: .post, body: request, response: PlaceOrderResponse.self) { response, error in
             DispatchQueue.main.async {
                 self.stopLoading()
