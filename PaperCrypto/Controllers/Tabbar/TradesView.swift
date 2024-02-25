@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TradesView: View {
     @State private var selectedTab:Int = 0
+    @StateObject private var viewModel = TradesViewModel()
+    
     var body: some View {
         
         VStack{
@@ -23,10 +25,13 @@ struct TradesView: View {
             if selectedTab == 1{
                 TradeHistoryView()
             } else {
-                CurrentPositionView()
+                CurrentPositionView(orders: viewModel.orders)
             }
             Spacer()
         }
+        .onAppear(perform: {
+            viewModel.getTrades()
+        })
     }
 }
 

@@ -110,13 +110,19 @@ struct PlaceOrdersView: View {
                 indicatorSize: 60,
                 indicatorColor: selectedOrderType == .buy ? .green : .red,
                 textColor: disableSlider ? .gray : selectedOrderType == .buy ? .green : .red), action: {
-                    viewModel.request.buysell = selectedOrderType.rawValue
+//                    viewModel.request.buysell = selectedOrderType.rawValue
+//                    viewModel.request.symbol = coin.symbol
+//                    viewModel.request.assetInSymbol = Double(inCrypto)
+//                    viewModel.request.assetInr = Double(inRupees)
+//                    viewModel.request.orderType = orderType == 0 ? "instant" : "limit"
+//                    viewModel.request.placedBy = AuthManager.shared.getUserID()
+//                    viewModel.request.assetPrice = Double(coin.last)
+                    viewModel.request.buySell = selectedOrderType.rawValue
                     viewModel.request.symbol = coin.symbol
-                    viewModel.request.assetInSymbol = Double(inCrypto)
-                    viewModel.request.assetInr = Double(inRupees)
-                    viewModel.request.orderType = orderType == 0 ? "instant" : "limit"
-                    viewModel.request.placedBy = AuthManager.shared.getUserID()
-                    viewModel.request.assetPrice = Double(coin.last)
+                    viewModel.request.entryPrice = Double(coin.last)
+                    viewModel.request.quantity = Double(inCrypto)
+                    viewModel.request.stopLoss = Double(stopLoss)
+                    viewModel.request.target = Double(target)
                     viewModel.placeOrder()
             })
             .disabled(disableSlider)
