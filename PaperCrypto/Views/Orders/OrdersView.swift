@@ -16,13 +16,13 @@ struct OrdersView: View {
             .overlay {
                 VStack{
                     HStack{
-                        Image(order.symbol)
+                        Image(order.symbol ?? "")
                             .resizable()
                             .frame(width: 40,height: 40)
                         Text(order.name)
                             .font(.getFont(font: .nunitoBold, size: 18))
                         Spacer()
-                        Text("\(order.quantity) \(order.symbol.uppercased())")
+                        Text("\(order.quantity ?? 0) \(order.symbol?.uppercased() ?? "")")
                             .font(.getFont(font: .nunitoSemibold, size: 16))
                             .foregroundStyle(.gray)
                     }
@@ -35,7 +35,8 @@ struct OrdersView: View {
                             Text("ENTRY")
                                 .font(.getFont(font: .interRegular, size: 10))
                                 .foregroundStyle(.gray)
-                            Text(order.entryPrice.getConvertedDecimal(points: 2))
+//                            Text(order.entryPrice?.getConvertedDecimal(points: 2) ?? 0)
+                            Text(order.entryPrice?.getConvertedDecimal(points: 2) ?? "")
                                 .font(.getFont(font: .interMedium, size: 14))
                         }
                         Spacer()
@@ -43,7 +44,7 @@ struct OrdersView: View {
                             Text("CURRENT")
                                 .font(.getFont(font: .interRegular, size: 10))
                                 .foregroundStyle(.gray)
-                            Text("-23412")
+                            Text((order.currentPrice ?? 0.0).amountWithCurrency(currency: ""))
                                 .font(.getFont(font: .interMedium, size: 14))
                         }
                         Spacer()

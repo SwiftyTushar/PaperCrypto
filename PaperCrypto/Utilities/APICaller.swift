@@ -32,6 +32,7 @@ class APICaller{
         case kLines = "exchange/cryptos/klines"
         case placeOrder = "exchange/cryptos/placeorder"
         case getOrders = "exchange/cryptos/orders"
+        case getAccountBalance = "exchange/user/balance"
     }
     func makeRequest<T:Encodable,U:Decodable>(endpoint:APIEndpoint,auth:Bool = true,method:HTTPMethod,body:T,response:U.Type,queryItems:[String:String] = [:],completion:@escaping((U?,String?) -> Void)){
         var urlComponent = URLComponents(string: baseURL + endpoint.rawValue)

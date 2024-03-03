@@ -9,4 +9,5 @@ import Foundation
 
 enum PCSocketEvents: String{
     case tickerUpdate = "tickerUpdate"
+    case fetchUpdateForTrade = "fetchUpdateForTrade"
 }

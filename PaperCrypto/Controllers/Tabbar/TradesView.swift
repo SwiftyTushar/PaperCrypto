@@ -25,13 +25,19 @@ struct TradesView: View {
             if selectedTab == 1{
                 TradeHistoryView()
             } else {
-                CurrentPositionView(orders: viewModel.orders)
+                CurrentPositionView(viewModel: viewModel)
             }
             Spacer()
         }
         .onAppear(perform: {
             viewModel.getTrades()
         })
+        .onDisappear(perform: {
+            viewModel.removeRealtimeObserver()
+        })
+        .onChange(of: viewModel.realtimeUpdates) { newValue in
+            print("Realtime updates published \(newValue)")
+        }
     }
 }
 

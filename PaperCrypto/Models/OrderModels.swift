@@ -38,34 +38,38 @@ struct GetOrdersResponse: Decodable{
     let data:[Order?]
 }
 //MARK: Order
-struct Order: Decodable,Identifiable{
+struct Order: Decodable,Identifiable,Equatable{
     var id: String {orderID}
     let orderID: String
-    let entryPrice: Double
-    let symbol, orderBy, buySell: String
+    let entryPrice: Double?
+    let symbol, orderBy, buySell: String?
     let target, stopLoss: Double?
-    let exitTime:Int?
-    let tradeExit: Bool
-    let quantity: Double
-    let v: Int
+    let tradeExit: Bool?
+    let quantity: Double?
     let name: String
-    var currentPrice:Double?
+    var currentPrice: Double?
+    let exitTime:Int?
     
-    mutating func currentPrice(_ dict:[String:Any]){
-        currentPrice = dict["c"] as? Double
-    }
+//    mutating func currentPrice(_ dict:[String:Any]){
+//        currentPrice = dict["c"] as? Double
+//    }
     
     func getFormattedTarget() -> String{
-        return target == nil ? "--" : target!.getConvertedDecimal(points: 2)
+       // return target == nil ? "--" : target!.getConvertedDecimal(points: 2)
+        return "--"
     }
     func getFormattedSL() -> String{
-        return stopLoss == nil ? "--" : target!.getConvertedDecimal(points: 2)
-    }
-    enum CodingKeys: String, CodingKey {
-        case orderID = "_id"
-        case entryPrice, symbol, orderBy, buySell, target, stopLoss, exitTime, tradeExit, quantity
-        case v = "__v"
-        case name
+        //return stopLoss == nil ? "--" : target!.getConvertedDecimal(points: 2)
+        return "--"
     }
 }
-
+//MARK: UserBalanceRequest
+struct UserBalanceRequest: Encodable{
+    let userID = AuthManager.shared.getUserID()
+}
+//MARK: UserBalanceResponse
+struct UserBalanceResponse: Decodable{
+    var success:Bool
+    var message:String
+    var capital:Double?
+}

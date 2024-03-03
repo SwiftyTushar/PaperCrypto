@@ -11,5 +11,5 @@ class MockData{
     static let sharedInstance = MockData()
     private init(){}
     let mockCoin = Coin(name: "Bitcoin", symbol: "btc", open: "4303530", last: "4484646.0", sell: "4488230.0", buy: "4487646.0", percentageChange: 4.208545078)
-    let mockOrder = Order(orderID: "ewr", entryPrice: 444000, symbol: "btc", orderBy: "qwerq", buySell: "buy", target: 55000, stopLoss: 512313, exitTime: 12341234, tradeExit: false, quantity: 0.2341, v: 1, name: "Bitcoin")
+    let mockOrder = Order.init(orderID: "qwerqwrq", entryPrice: 1234124.634, symbol: "btc", orderBy: "qwejroiqw", buySell: "buy", target: 312412.0, stopLoss: 234816.0, tradeExit: false, quantity: 0.9241234, name: "Bitcoin", currentPrice: 471234.5, exitTime: nil)
 }

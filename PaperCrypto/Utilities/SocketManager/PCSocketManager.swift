@@ -18,23 +18,33 @@ class PCSocketManager{
         socket = manager.defaultSocket
         socket?.on("connect") { _, _ in
             print("Socket Connected")
-           // self.getRealtimeUpdates(for: ["btc@inr"])
         }
     }
     func establishSocketConnection(){
         socket?.connect()
     }
     private func fetchRealtimeUpdate(event:PCSocketEvents,completion:@escaping([Any])->Void){
-        socket?.on(event.rawValue, callback: { data, ack in
+        print("fetchRealtimeUpdate---- connnected \(socket?.status == .connected)")
+        socket?.on("tickerUpdate", callback: { data, ack in
+            print("PCSOCKETMANAGER.fetchRealtimeUpdate------ data \(data)")
             completion(data)
         })
     }
-    func getRealtimeUpdates(orders:[Order]){
-        if !orders.isEmpty{
-            let orderTickers = orders.map{$0.symbol}
-            
-            fetchRealtimeUpdate(event: .tickerUpdate) { response in
-               
+    
+    func getRealtimeUpdates(orders:[Order],completion:@escaping(([Order]) -> Void)){
+        fetchRealtimeUpdate(event: .tickerUpdate) { response in
+            if let dict = response.first as? [String:Any]{
+                let symbol = dict["symbol"] as? String ?? ""
+                print("getRealtimeUpdates------ \(dict)")
+                let firstIndexForSymbol = orders.firstIndex{$0.symbol == symbol} ?? -1
+                if firstIndexForSymbol != -1{
+                    var modifiedOrder = orders[firstIndexForSymbol]
+                    modifiedOrder.currentPrice = dict["last"] as? Double
+                    print("getRealtimeUpdates----- socket.io bro--- \(modifiedOrder)")
+                    var modifiedOrdersArray = orders
+                    modifiedOrdersArray[firstIndexForSymbol] = modifiedOrder
+                    completion(modifiedOrdersArray)
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 class PlaceOrderViewModel: BaseViewModel{
 
     var request = PlaceOrderRequest()
-   
+    @Published var accountBalance:Double = 0.0
     
     func placeOrder(){
         request.userID = AuthManager.shared.getUserID()
@@ -24,6 +24,22 @@ class PlaceOrderViewModel: BaseViewModel{
                     self.success = true
                 }
             }
+        }
+    }
+    func fetchAccountBalance(){
+        APICaller.sharedInstance.makeRequest(endpoint: .getAccountBalance, method: .post, body: UserBalanceRequest(), response: UserBalanceResponse.self) { response, error in
+            DispatchQueue.main.async {
+                self.loading = false
+                if error != nil{
+                    self.showError = true
+                    self.errorMessage = error ?? ""
+                } else {
+                    if let response = response{
+                        self.accountBalance = response.capital ?? 0.0
+                    }
+                }
+            }
+            
         }
     }
     func convertRupeesToAsset(inr:String,coin:Coin) -> String{
